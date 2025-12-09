@@ -1,8 +1,49 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+
+# Next.js Product Showcase
+
+A responsive **Next.js** application built with the App Router.
+This project focuses on smooth UI interactions, responsive layouts, and a clean component structure—ideal for showcasing products or building marketing-style landing pages.
+
+---
+
+## Features
+
+* **Next.js App Router**
+* **Fully responsive** (mobile & desktop optimized)
+* Clean UI with smooth scrolling and animations
+* Component-based architecture
+* Optimized images using `next/image`
+* Automatic font optimization with `next/font`
+
+---
+
+## 🛠 Tech Stack
+
+- **Next.js** – React framework for building fast, scalable web applications
+- **React** – Component-based UI library
+- **TypeScript** – Type-safe JavaScript for better reliability and maintainability
+- **Tailwind CSS** – Utility-first CSS framework for rapid and responsive styling
+- **Framer Motion** – Smooth, interactive UI animations and transitions
+- **Three.js** – Real-time 3D rendering used for the interactive shoe model in the Hero section
+- **@react-three/fiber & @react-three/drei** – React bindings and helpers for managing Three.js scenes
+
+---
 
 ## Getting Started
 
-First, run the development server:
+Clone the repository and install dependencies:
+
+```bash
+npm install
+# or
+yarn install
+# or
+pnpm install
+# or
+bun install
+```
+
+Start the development server:
 
 ```bash
 npm run dev
@@ -14,23 +55,41 @@ pnpm dev
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open your browser and visit:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```
+http://localhost:3000
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
+
+## Development Notes
+
+* The main entry point is `app/page.tsx`
+* Components are structured for reuse and scalability
+* UI updates automatically as you save files during development
+* Optimized fonts are handled using `next/font` (Geist)
+
+---
 
 ## Learn More
 
-To learn more about Next.js, take a look at the following resources:
+* [Next.js Documentation](https://nextjs.org/docs)
+* [Next.js App Router](https://nextjs.org/docs/app)
+* [Learn Next.js](https://nextjs.org/learn)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Deployment
 
-## Deploy on Vercel
+The easiest way to deploy this project is with **Vercel**, the platform built by the creators of Next.js.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+* Deploy instantly: [https://vercel.com/new](https://vercel.com/new)
+* Documentation: [https://nextjs.org/docs/app/building-your-application/deploying](https://nextjs.org/docs/app/building-your-application/deploying)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+## Contributions
+
+Contributions, issues, and feature requests are welcome.
+Feel free to fork the repo and submit a pull request.
