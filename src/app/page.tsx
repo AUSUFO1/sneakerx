@@ -1,11 +1,13 @@
-import Hero from '@/component/Hero/index';
-import ProductSection from '@/component/sections/ProductSection';
+import Hero from '@/component/Hero/Hero';
+import SneakerShowcase from '@/component/SneakerShowcase';
+import TestimonialShow from '@/component/sections/TestimonialShow';
 
 export default function Home() {
   return (
     <main>
       <Hero />
-      <ProductSection />
+      <SneakerShowcase />
+      <TestimonialShow />
     </main>
   );
 }

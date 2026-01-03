@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-@theme {
+:root {
   --color-nike-red: #FF3131;
   --color-midnight: #0C0C0C;
   --color-charcoal: #141414;
@@ -16,7 +16,6 @@
   --font-size-hero-mobile: 36px;
 }
 
-
 body {
   background-color: var(--color-midnight);
   color: white;
@@ -28,119 +27,4 @@ body {
 
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-family-heading);
-}
-
-/* Buttons */
-.btn-primary {
-  background-color: var(--color-nike-red);
-  color: white;
-  padding: 0.75rem 1.5rem;
-  border-radius: 0.5rem;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  transition: all 300ms ease-out;
-}
-
-.btn-primary:hover {
-  transform: scale(1.05);
-  box-shadow: 0 10px 15px -3px rgb(255 49 49 / 0.5);
-}
-
-.btn-primary:active {
-  transform: scale(0.95);
-}
-
-.btn-outline {
-  border: 1px solid rgb(199 199 199 / 0.2);
-  color: white;
-  padding: 0.75rem 1.5rem;
-  border-radius: 0.5rem;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  transition: all 300ms ease-out;
-}
-
-.btn-outline:hover {
-  border-color: var(--color-nike-red);
-  color: var(--color-nike-red);
-  transform: scale(1.05);
-}
-
-.btn-outline:active {
-  transform: scale(0.95);
-}
-
-/* Cards */
-.card {
-  background-color: var(--color-charcoal);
-  border-radius: 1rem;
-  padding: 1.5rem;
-  border: 1px solid rgb(199 199 199 / 0.1);
-  backdrop-filter: blur(12px);
-}
-
-/* Speed Line */
-.speed-line {
-  position: absolute;
-  height: 2px;
-  background: linear-gradient(to right, transparent, var(--color-nike-red), transparent);
-  animation: speedLine 2s ease-in-out infinite;
-}
-
-@keyframes speedLine {
-  0% {
-    transform: translateX(-100%);
-    opacity: 0;
-  }
-  50% {
-    opacity: 1;
-  }
-  100% {
-    transform: translateX(100%);
-    opacity: 0;
-  }
-}
-
-/* Container */
-.container-custom {
-  max-width: 80rem;
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
-}
-
-@media (min-width: 1024px) {
-  .container-custom {
-    padding-left: 2rem;
-    padding-right: 2rem;
-  }
-}
-
-/* Scrollbar Styles */
-::-webkit-scrollbar {
-  width: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background-color: var(--color-midnight);
-}
-
-::-webkit-scrollbar-thumb {
-  background-color: var(--color-nike-red);
-  border-radius: 9999px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background-color: var(--color-speed-orange);
-}
-
-/* Utilities */
-.text-gradient {
-  background: linear-gradient(to right, var(--color-nike-red), var(--color-speed-orange), var(--color-nike-red));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
 }

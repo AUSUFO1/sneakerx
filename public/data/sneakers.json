@@ -1,0 +1,82 @@
+[
+  {
+    "id": "aj1",
+    "name": "Air Jordan 1 Retro High",
+    "brand": "Jordan",
+    "image": "/sneakers/aj1.jpeg",
+    "description": "The sneaker that started it all — timeless court heritage with premium leather, bold color blocking, and unmatched versatility.",
+    "price": 180
+  },
+  {
+    "id": "aj2",
+    "name": "Air Jordan 4 Thunder",
+    "brand": "Jordan",
+    "image": "/sneakers/aj2.jpeg",
+    "description": "Striking design with iconic mesh panels and bold accents, built for explosive performance and everyday street style.",
+    "price": 210
+  },
+  {
+    "id": "aj3",
+    "name": "Air Jordan 11 Concord",
+    "brand": "Jordan",
+    "image": "/sneakers/aj3.jpeg",
+    "description": "Legendary silhouette featuring patent leather shine, championship pedigree, and a sleek design that defines sneaker culture.",
+    "price": 220
+  },
+  {
+    "id": "aj4",
+    "name": "Air Jordan 3 Retro Black Cement",
+    "brand": "Jordan",
+    "image": "/sneakers/aj4.jpeg",
+    "description": "Iconic elephant print overlays with premium leather construction, delivering retro style and all-day comfort.",
+    "price": 200
+  },
+  {
+    "id": "aj5",
+    "name": "Air Jordan 5 Fire Red",
+    "brand": "Jordan",
+    "image": "/sneakers/aj5.jpeg",
+    "description": "Classic fighter jet inspiration with bold red accents, reflective tongue, and a design built to stand out.",
+    "price": 210
+  },
+  {
+    "id": "aj6",
+    "name": "Air Jordan 6 Infrared",
+    "brand": "Jordan",
+    "image": "/sneakers/aj6.jpeg",
+    "description": "Championship-ready sneaker with visible Air cushioning, sculpted midsole, and striking infrared highlights.",
+    "price": 220
+  },
+  {
+    "id": "aj7",
+    "name": "Air Jordan 7 Bordeaux",
+    "brand": "Jordan",
+    "image": "/sneakers/aj7.jpeg",
+    "description": "Geometric design lines with Bordeaux accents, offering a luxurious retro aesthetic and lightweight comfort.",
+    "price": 200
+  },
+  {
+    "id": "aj8",
+    "name": "Air Jordan 8 Aqua",
+    "brand": "Jordan",
+    "image": "/sneakers/aj8.jpeg",
+    "description": "Bold straps, vibrant Aqua colorway, and premium cushioning make this one of the most iconic Jordan releases.",
+    "price": 210
+  },
+  {
+    "id": "aj9",
+    "name": "Air Jordan 9 Space Jam",
+    "brand": "Jordan",
+    "image": "/sneakers/aj9.jpeg",
+    "description": "Global-inspired design worn by MJ in Space Jam, blending nostalgia with premium craftsmanship and comfort.",
+    "price": 220
+  },
+  {
+    "id": "aj10",
+    "name": "Air Jordan 10 Chicago",
+    "brand": "Jordan",
+    "image": "/sneakers/aj10.jpeg",
+    "description": "Celebrating MJ’s return with Chicago pride, featuring premium leather and outsole stripes honoring his career milestones.",
+    "price": 200
+  }
+]

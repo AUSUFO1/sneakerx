@@ -1,16 +1,13 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 
-// Default icon imports
-import Home from '../icon/home';
-import Sneaker from '../icon/sneaker';
-import Configure from '../icon/config';
-import Info from '../icon/info';
-import Contact from '../icon/contact';
-
-
+import Home from '../icon/home'
+import Sneaker from '../icon/sneaker'
+import Info from '../icon/info'
+import Contact from '../icon/contact'
 
 interface MenuItem {
   name: string
@@ -20,74 +17,161 @@ interface MenuItem {
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
+  const pathname = usePathname()
 
   const menuItems: MenuItem[] = [
     { name: 'Home', href: '/', Icon: Home },
-    { name: 'Product', href: '/product', Icon: Sneaker },
-    { name: 'Config', href: '/configurator', Icon: Configure },
-    { name: 'About', href: '/about', Icon: Info },
+    { name: 'Products', href: '/product', Icon: Sneaker },
+    { name: 'About', href: '#about', Icon: Info },
     { name: 'Contact', href: '/contact', Icon: Contact },
   ]
 
+  // Handle scroll effect for header
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20)
+    }
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
+  // Prevent body scroll when mobile menu is open
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = 'unset'
+    }
+    return () => {
+      document.body.style.overflow = 'unset'
+    }
+  }, [isOpen])
+
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-midnight/80 border-b border-steel/10">
-      <nav className="container-custom py-4">
-        <div className="flex items-center justify-between">
-          
-          {/* Logo */}
-          <Link href="/" className="flex items-center gap-2 group">
-            <div className="text-2xl font-heading font-bold tracking-tight">
-              SNEAKER <span className="text-nike-red">X</span>
+    <>
+      <header 
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+          scrolled 
+            ? 'bg-slate-900/95 backdrop-blur-lg shadow-lg' 
+            : 'bg-slate-900/80 backdrop-blur-md'
+        }`}
+      >
+        <nav className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="flex h-16 items-center justify-between md:h-20">
+            
+            {/* Logo */}
+            <Link 
+              href="/" 
+              className="group flex items-center gap-2 transition-transform hover:scale-105 active:scale-95"
+              aria-label="SNEAKER X Home"
+            >
+              <div className="text-xl font-bold tracking-tight text-white sm:text-2xl">
+                SNEAKER <span className="text-red-600">X</span>
+              </div>
+            </Link>
+
+            {/* Desktop Navigation */}
+            <div className="hidden items-center gap-1 md:flex lg:gap-2">
+              {menuItems.map((item) => {
+                const isActive = pathname === item.href
+                return (
+                  <Link
+                    key={item.name}
+                    href={item.href}
+                    className={`group flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium transition-all focus:outline-none focus:ring-2 focus:ring-red-600 focus:ring-offset-2 focus:ring-offset-slate-900 lg:px-4 ${
+                      isActive 
+                        ? 'bg-red-600 text-white' 
+                        : 'text-white hover:bg-white/10'
+                    }`}
+                  >
+                    <item.Icon className={`h-4 w-4 transition-colors lg:h-5 lg:w-5 ${
+                      isActive ? 'text-white' : 'group-hover:text-red-600'
+                    }`} />
+                    <span className={`uppercase tracking-wide transition-colors ${
+                      isActive ? 'text-white' : 'group-hover:text-red-600'
+                    }`}>
+                      {item.name}
+                    </span>
+                  </Link>
+                )
+              })}
             </div>
-          </Link>
 
-          {/* Desktop Menu */}
-          <div className="hidden lg:flex items-center gap-8">
-            {menuItems.map((item) => (
-              <Link
-                key={item.name}
-                href={item.href}
-                className="flex items-center gap-2 text-white hover:text-nike-red transition-colors group"
-              >
-                <item.Icon className="w-5 h-5 text-white group-hover:text-nike-red transition-colors" />
-                <span className="text-sm font-medium uppercase tracking-wider group-hover:text-nike-red">
-                  {item.name}
-                </span>
-              </Link>
-            ))}
+            {/* Mobile Menu Button */}
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className="relative z-50 flex h-11 w-11 flex-col items-center justify-center gap-1.5 rounded-lg transition-colors hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-red-600 focus:ring-offset-2 focus:ring-offset-slate-900 md:hidden"
+              aria-label={isOpen ? 'Close menu' : 'Open menu'}
+              aria-expanded={isOpen}
+            >
+              <span 
+                className={`h-0.5 w-6 bg-white transition-all duration-300 ${
+                  isOpen ? 'translate-y-2 rotate-45' : ''
+                }`} 
+              />
+              <span 
+                className={`h-0.5 w-6 bg-white transition-all duration-300 ${
+                  isOpen ? 'opacity-0' : 'opacity-100'
+                }`} 
+              />
+              <span 
+                className={`h-0.5 w-6 bg-white transition-all duration-300 ${
+                  isOpen ? '-translate-y-2 -rotate-45' : ''
+                }`} 
+              />
+            </button>
           </div>
+        </nav>
+      </header>
 
-          {/* Mobile Menu Button */}
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            className="lg:hidden w-10 h-10 flex flex-col items-center justify-center gap-1.5"
-            aria-label="Toggle menu"
-          >
-            <span className={`w-6 h-0.5 bg-white transition-all ${isOpen ? 'rotate-45 translate-y-2' : ''}`} />
-            <span className={`w-6 h-0.5 bg-white transition-all ${isOpen ? 'opacity-0' : ''}`} />
-            <span className={`w-6 h-0.5 bg-white transition-all ${isOpen ? '-rotate-45 -translate-y-2' : ''}`} />
-          </button>
-        </div>
-
-        {/* Mobile Menu */}
-        {isOpen && (
-          <div className="lg:hidden mt-6 space-y-4 pb-4">
-            {menuItems.map((item) => (
-              <Link
-                key={item.name}
-                href={item.href}
-                onClick={() => setIsOpen(false)}
-                className="flex items-center gap-3 text-white hover:text-nike-red transition-colors py-2"
-              >
-                <item.Icon className="w-6 h-6 text-white hover:text-nike-red transition-colors" />
-                <span className="text-base font-medium uppercase tracking-wider group-hover:text-nike-red">
-                  {item.name}
-                </span>
-              </Link>
-            ))}
+      {/* Mobile Menu Overlay */}
+      <div
+        className={`fixed inset-0 z-40 bg-slate-900/95 backdrop-blur-lg transition-opacity duration-300 md:hidden ${
+          isOpen ? 'opacity-100' : 'pointer-events-none opacity-0'
+        }`}
+        aria-hidden={!isOpen}
+      >
+        <nav className="flex h-full flex-col items-center justify-center px-6">
+          <div className="w-full max-w-sm space-y-2">
+            {menuItems.map((item, index) => {
+              const isActive = pathname === item.href
+              return (
+                <Link
+                  key={item.name}
+                  href={item.href}
+                  onClick={() => setIsOpen(false)}
+                  className={`group flex items-center gap-4 rounded-xl px-6 py-4 transition-all focus:outline-none focus:ring-2 focus:ring-red-600 focus:ring-offset-2 focus:ring-offset-slate-900 ${
+                    isActive 
+                      ? 'bg-red-600 text-white' 
+                      : 'bg-white/5 text-white hover:bg-white/10'
+                  } ${
+                    isOpen 
+                      ? 'translate-x-0 opacity-100' 
+                      : 'translate-x-8 opacity-0'
+                  }`}
+                  style={{
+                    transitionDelay: isOpen ? `${index * 50}ms` : '0ms',
+                    transitionDuration: '300ms'
+                  }}
+                >
+                  <item.Icon className={`h-6 w-6 shrink-0 transition-colors ${
+                    isActive ? 'text-white' : 'group-hover:text-red-600'
+                  }`} />
+                  <span className={`text-lg font-medium uppercase tracking-wide transition-colors ${
+                    isActive ? 'text-white' : 'group-hover:text-red-600'
+                  }`}>
+                    {item.name}
+                  </span>
+                </Link>
+              )
+            })}
           </div>
-        )}
-      </nav>
-    </header>
+        </nav>
+      </div>
+
+      {/* Spacer to prevent content jump */}
+      <div className="h-16 md:h-20" aria-hidden="true" />
+    </>
   )
 }
