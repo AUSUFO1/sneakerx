@@ -60,7 +60,7 @@ const modalVariants = {
 
 
 const SkeletonCard = memo(() => (
-  <div className="min-w-[280px] md:min-w-[340px] h-[420px] bg-linear-to-br from-gray-800 via-gray-700 to-gray-800 rounded-2xl animate-pulse" />
+  <div className="min-w-[280px] md:min-w-[340px] 2xl:min-w-[420px] h-[420px] 2xl:h-[520px] bg-linear-to-br from-gray-800 via-gray-700 to-gray-800 rounded-2xl animate-pulse" />
 ))
 
 SkeletonCard.displayName = 'SkeletonCard'
@@ -88,11 +88,10 @@ const SneakerCard = memo(({ sneaker, onSelect }: SneakerCardProps) => {
   return (
     <motion.div
       variants={shouldReduceMotion ? undefined : cardVariants}
-      className="relative min-w-[280px] md:min-w-[340px] h-[420px] group shrink-0 snap-center"
+      className="relative min-w-[280px] md:min-w-[340px] 2xl:min-w-[420px] h-[420px] 2xl:h-[520px] group shrink-0 snap-center"
     >
       <div className="relative h-full rounded-2xl overflow-hidden transition-all duration-500 bg-linear-to-br from-gray-900 via-gray-800 to-black shadow-xl hover:shadow-2xl">
-        {/* Image container */}
-        <div className="relative h-[280px] overflow-hidden bg-linear-to-br from-white to-gray-100 p-8">
+        <div className="relative h-[280px] 2xl:h-[340px] overflow-hidden bg-linear-to-br from-white to-gray-100 p-8 2xl:p-12">
           {!imageLoaded && (
             <div className="absolute inset-0 bg-linear-to-r from-gray-200 via-gray-100 to-gray-200 animate-pulse" />
           )}
@@ -102,7 +101,7 @@ const SneakerCard = memo(({ sneaker, onSelect }: SneakerCardProps) => {
               src={sneaker.image}
               alt={sneaker.name}
               fill
-              sizes="(max-width: 768px) 280px, 340px"
+              sizes="(max-width: 768px) 280px, (max-width: 1536px) 340px, 420px"
               className={`object-contain drop-shadow-2xl transition-all duration-700 group-hover:scale-110 group-hover:rotate-6 ${
                 imageLoaded ? 'opacity-100' : 'opacity-0'
               }`}
@@ -113,15 +112,14 @@ const SneakerCard = memo(({ sneaker, onSelect }: SneakerCardProps) => {
           <div className="absolute bottom-0 inset-x-0 h-20 bg-linear-to-t from-black/10 to-transparent" />
         </div>
 
-        {/* Content */}
-        <div className="relative p-6 space-y-2">
-          <p className="text-red-500 text-xs font-semibold uppercase tracking-wider">
+        <div className="relative p-6 2xl:p-8 space-y-2">
+          <p className="text-red-500 text-xs 2xl:text-sm font-semibold uppercase tracking-wider">
             {sneaker.brand}
           </p>
-          <h3 className="text-white text-lg font-bold line-clamp-1 leading-tight">
+          <h3 className="text-white text-lg 2xl:text-2xl font-bold line-clamp-1 leading-tight">
             {sneaker.name}
           </h3>
-          <p className="text-2xl font-bold text-white">
+          <p className="text-2xl 2xl:text-4xl font-bold text-white">
             ${sneaker.price}
           </p>
         </div>
@@ -129,12 +127,11 @@ const SneakerCard = memo(({ sneaker, onSelect }: SneakerCardProps) => {
         {/* Hover overlay */}
         <div className="absolute inset-0 bg-linear-to-t from-red-600/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
 
-        {/* View Details Button - Always visible on mobile/tablet, hover on desktop */}
         <motion.button
           onClick={() => onSelect(sneaker)}
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
-          className="absolute bottom-6 left-1/2 -translate-x-1/2 bg-red-600 text-white px-5 sm:px-8 py-2.5 sm:py-3 text-sm sm:text-base rounded-full font-semibold shadow-lg hover:bg-red-700 transition-all duration-200 lg:opacity-0 lg:group-hover:opacity-100 focus:opacity-100 focus:outline-none focus:ring-2 focus:ring-red-600 focus:ring-offset-2 focus:ring-offset-gray-900"
+          className="absolute bottom-6 2xl:bottom-8 left-1/2 -translate-x-1/2 bg-red-600 text-white px-5 sm:px-8 2xl:px-12 py-2.5 sm:py-3 2xl:py-4 text-sm sm:text-base 2xl:text-lg rounded-full font-semibold shadow-lg hover:bg-red-700 transition-all duration-200 lg:opacity-0 lg:group-hover:opacity-100 focus:opacity-100 focus:outline-none focus:ring-2 focus:ring-red-600 focus:ring-offset-2 focus:ring-offset-gray-900"
         >
           View Details
         </motion.button>
@@ -153,7 +150,6 @@ interface ModalProps {
 const Modal = memo(({ sneaker, onClose }: ModalProps) => {
   const [imageLoaded, setImageLoaded] = useState(false)
 
-  // Close on Escape key
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
       if (e.key === 'Escape') onClose()
@@ -185,22 +181,21 @@ const Modal = memo(({ sneaker, onClose }: ModalProps) => {
         animate="visible"
         exit="exit"
         onClick={(e) => e.stopPropagation()}
-        className="relative w-full max-w-4xl max-h-[90vh] bg-linear-to-br from-gray-900 via-gray-800 to-black rounded-2xl shadow-2xl overflow-hidden"
+        className="relative w-full max-w-4xl 2xl:max-w-6xl max-h-[90vh] bg-linear-to-br from-gray-900 via-gray-800 to-black rounded-2xl shadow-2xl overflow-hidden"
       >
-        {/* Close button */}
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 z-20 w-10 h-10 sm:w-12 sm:h-12 bg-white/10 hover:bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center transition-colors duration-200 group focus:outline-none focus:ring-2 focus:ring-red-600"
+          className="absolute top-4 right-4 2xl:top-6 2xl:right-6 z-20 w-10 h-10 sm:w-12 sm:h-12 2xl:w-16 2xl:h-16 bg-white/10 hover:bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center transition-colors duration-200 group focus:outline-none focus:ring-2 focus:ring-red-600"
           aria-label="Close modal"
         >
-          <X className="w-5 h-5 sm:w-6 sm:h-6 text-white group-hover:rotate-90 transition-transform duration-300" />
+          <X className="w-5 h-5 sm:w-6 sm:h-6 2xl:w-8 2xl:h-8 text-red-600 group-hover:rotate-90 transition-transform duration-300" />
         </button>
 
         {/* Scrollable content */}
         <div className="overflow-y-auto max-h-[90vh] custom-scrollbar">
           <div className="flex flex-col lg:flex-row">
-            {/* Image section */}
-            <div className="relative lg:w-1/2 h-[300px] sm:h-[400px] lg:h-[600px] bg-linear-to-br from-white to-gray-100 flex items-center justify-center p-8">
+            {/* Image section - STANDARD FOR LG/XL, SCALED FOR 2XL */}
+            <div className="relative lg:w-1/2 h-[300px] sm:h-[400px] lg:h-[600px] 2xl:h-[750px] bg-linear-to-br from-white to-gray-100 flex items-center justify-center p-8 2xl:p-16">
               {!imageLoaded && (
                 <div className="absolute inset-0 bg-linear-to-r from-gray-200 via-gray-100 to-gray-200 animate-pulse" />
               )}
@@ -219,68 +214,65 @@ const Modal = memo(({ sneaker, onClose }: ModalProps) => {
                 />
               </div>
 
-              {/* Floating badge */}
-              <div className="absolute top-6 left-6 bg-red-600 text-white px-4 py-2 rounded-full text-xs sm:text-sm font-bold shadow-lg">
+              {/* Floating badge - STANDARD FOR LG/XL, SCALED FOR 2XL */}
+              <div className="absolute top-6 left-6 2xl:top-10 2xl:left-10 bg-red-600 text-white px-4 py-2 2xl:px-6 2xl:py-3 rounded-full text-xs sm:text-sm 2xl:text-lg font-bold shadow-lg">
                 Featured
               </div>
             </div>
 
-            {/* Content section */}
-            <div className="lg:w-1/2 p-6 sm:p-8 lg:p-10 space-y-6">
+            {/* Content section - STANDARD FOR LG/XL, SCALED FOR 2XL */}
+            <div className="lg:w-1/2 p-6 sm:p-8 lg:p-10 2xl:p-16 space-y-6 2xl:space-y-8">
               <div>
-                <p className="text-red-500 text-xs sm:text-sm font-semibold uppercase tracking-widest mb-2">
+                <p className="text-red-500 text-xs sm:text-sm 2xl:text-lg font-semibold uppercase tracking-widest mb-2">
                   {sneaker.brand}
                 </p>
-                <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white leading-tight mb-3">
+                <h2 className="text-2xl sm:text-3xl lg:text-4xl 2xl:text-6xl font-bold text-white leading-tight mb-3">
                   {sneaker.name}
                 </h2>
-                <div className="h-1 w-16 bg-linear-to-r from-red-500 to-orange-500 rounded-full" />
+                <div className="h-1 w-16 2xl:w-24 bg-linear-to-r from-red-500 to-orange-500 rounded-full" />
               </div>
 
-              {/* Description */}
               <div className="space-y-3">
-                <h3 className="text-white font-semibold text-sm uppercase tracking-wider">About This Sneaker</h3>
-                <p className="text-gray-300 text-sm sm:text-base leading-relaxed">
+                <h3 className="text-white font-semibold text-sm 2xl:text-lg uppercase tracking-wider">About This Sneaker</h3>
+                <p className="text-gray-300 text-sm sm:text-base 2xl:text-2xl leading-relaxed">
                   {sneaker.description}
                 </p>
               </div>
 
-              {/* Features grid */}
-              <div className="grid grid-cols-2 gap-3 sm:gap-4 pt-4">
-                <div className="bg-white/5 backdrop-blur-sm p-3 sm:p-4 rounded-xl">
-                  <p className="text-gray-400 text-xs uppercase tracking-wider mb-1">Style</p>
-                  <p className="text-white font-semibold text-sm sm:text-base">Retro High</p>
+              <div className="grid grid-cols-2 gap-3 sm:gap-4 2xl:gap-6 pt-4">
+                <div className="bg-white/5 backdrop-blur-sm p-3 sm:p-4 2xl:p-7 rounded-xl">
+                  <p className="text-gray-400 text-xs 2xl:text-sm uppercase tracking-wider mb-1">Style</p>
+                  <p className="text-white font-semibold text-sm sm:text-base 2xl:text-2xl">Retro High</p>
                 </div>
-                <div className="bg-white/5 backdrop-blur-sm p-3 sm:p-4 rounded-xl">
-                  <p className="text-gray-400 text-xs uppercase tracking-wider mb-1">Release</p>
-                  <p className="text-white font-semibold text-sm sm:text-base">2024</p>
+                <div className="bg-white/5 backdrop-blur-sm p-3 sm:p-4 2xl:p-7 rounded-xl">
+                  <p className="text-gray-400 text-xs 2xl:text-sm uppercase tracking-wider mb-1">Release</p>
+                  <p className="text-white font-semibold text-sm sm:text-base 2xl:text-2xl">2024</p>
                 </div>
-                <div className="bg-white/5 backdrop-blur-sm p-3 sm:p-4 rounded-xl">
-                  <p className="text-gray-400 text-xs uppercase tracking-wider mb-1">Colorway</p>
-                  <p className="text-white font-semibold text-sm sm:text-base">Multi</p>
+                <div className="bg-white/5 backdrop-blur-sm p-3 sm:p-4 2xl:p-7 rounded-xl">
+                  <p className="text-gray-400 text-xs 2xl:text-sm uppercase tracking-wider mb-1">Colorway</p>
+                  <p className="text-white font-semibold text-sm sm:text-base 2xl:text-2xl">Multi</p>
                 </div>
-                <div className="bg-white/5 backdrop-blur-sm p-3 sm:p-4 rounded-xl">
-                  <p className="text-gray-400 text-xs uppercase tracking-wider mb-1">Stock</p>
-                  <p className="text-white font-semibold text-sm sm:text-base">Limited</p>
+                <div className="bg-white/5 backdrop-blur-sm p-3 sm:p-4 2xl:p-7 rounded-xl">
+                  <p className="text-gray-400 text-xs 2xl:text-sm uppercase tracking-wider mb-1">Stock</p>
+                  <p className="text-white font-semibold text-sm sm:text-base 2xl:text-2xl">Limited</p>
                 </div>
               </div>
 
-              {/* Price and actions */}
               <div className="pt-6 border-t border-gray-700/50 space-y-4">
                 <div className="flex items-baseline gap-2">
-                  <span className="text-3xl sm:text-4xl font-bold text-white">
+                  <span className="text-3xl sm:text-4xl 2xl:text-7xl font-bold text-white">
                     ${sneaker.price}
                   </span>
-                  <span className="text-gray-400 text-sm">USD</span>
+                  <span className="text-gray-400 text-sm 2xl:text-xl">USD</span>
                 </div>
 
-                <div className="flex flex-col sm:flex-row gap-3">
-                  <button className="flex-1 flex items-center justify-center gap-2 bg-red-600 hover:bg-red-700 text-white font-semibold py-3 sm:py-4 rounded-xl transition-all duration-200 shadow-lg shadow-red-500/30 active:scale-95 focus:outline-none focus:ring-2 focus:ring-red-600 focus:ring-offset-2 focus:ring-offset-gray-900">
-                    <ShoppingCart className="w-5 h-5" />
+                <div className="flex flex-col sm:flex-row gap-3 2xl:gap-5">
+                  <button className="flex-1 flex items-center justify-center gap-2 bg-red-600 hover:bg-red-700 text-white font-semibold py-3 sm:py-4 2xl:py-6 text-sm 2xl:text-xl rounded-xl transition-all duration-200 shadow-lg shadow-red-500/30 active:scale-95 focus:outline-none focus:ring-2 focus:ring-red-600 focus:ring-offset-2 focus:ring-offset-gray-900">
+                    <ShoppingCart className="w-5 h-5 2xl:w-8 2xl:h-8" />
                     Add to Cart
                   </button>
-                  <button className="flex-1 flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 backdrop-blur-sm text-white font-semibold py-3 sm:py-4 rounded-xl transition-all duration-200 active:scale-95 focus:outline-none focus:ring-2 focus:ring-white/50 focus:ring-offset-2 focus:ring-offset-gray-900">
-                    <Expand className="w-5 h-5" />
+                  <button className="flex-1 flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 backdrop-blur-sm text-white font-semibold py-3 sm:py-4 2xl:py-6 text-sm 2xl:text-xl rounded-xl transition-all duration-200 active:scale-95 focus:outline-none focus:ring-2 focus:ring-white/50 focus:ring-offset-2 focus:ring-offset-gray-900">
+                    <Expand className="w-5 h-5 2xl:w-8 2xl:h-8" />
                     Try AR View
                   </button>
                 </div>
@@ -328,7 +320,6 @@ export default function SneakerShowcase() {
     fetchSneakers()
   }, [])
 
-  // INFINITE AUTO-SCROLL - Desktop only (lg and above), continuous movement
   useEffect(() => {
     if (!sliderRef.current || loading || sneakers.length === 0 || shouldReduceMotion || !isDesktop) return
 
@@ -362,24 +353,22 @@ export default function SneakerShowcase() {
   }, [])
 
   return (
-    <section className="relative min-h-screen bg-black py-20 px-6 overflow-hidden">
-      {/* Background elements */}
+    <section className="relative bg-black py-20 2xl:py-28 px-6 2xl:px-10 overflow-hidden">
       <div className="absolute inset-0 bg-linear-to-b from-red-500/5 via-transparent to-orange-500/5" />
-      <div className="absolute top-0 left-1/4 w-96 h-96 bg-red-500/10 rounded-full blur-3xl" />
-      <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-orange-500/10 rounded-full blur-3xl" />
+      <div className="absolute top-0 left-1/4 w-96 h-96 2xl:w-lg 2xl:h-128 bg-red-500/10 rounded-full blur-3xl" />
+      <div className="absolute bottom-0 right-1/4 w-96 h-96 2xl:w-lg 2xl:h-128 bg-orange-500/10 rounded-full blur-3xl" />
 
-      <div className="relative max-w-[1600px] mx-auto">
-        {/* Header */}
+      <div className="relative max-w-[1600px] 2xl:max-w-[2000px] mx-auto">
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: EASE_OUT }}
-          className="mb-12"
+          className="mb-12 2xl:mb-20"
         >
-          <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-4">
+          <h2 className="text-4xl sm:text-5xl md:text-6xl 2xl:text-8xl font-bold text-white mb-4 2xl:mb-6">
             Featured <span className="bg-linear-to-r from-red-500 to-orange-500 bg-clip-text text-transparent">Collection</span>
           </h2>
-          <p className="text-gray-400 text-base sm:text-lg max-w-2xl">
+          <p className="text-gray-400 text-base sm:text-lg md:text-2xl 2xl:text-3xl max-w-2xl 2xl:max-w-4xl">
             Discover our hand-picked selection of iconic sneakers. From timeless classics to modern innovations.
           </p>
         </motion.div>
@@ -409,7 +398,7 @@ export default function SneakerShowcase() {
               variants={shouldReduceMotion ? undefined : containerVariants}
               initial="hidden"
               animate="visible"
-              className="flex gap-4 sm:gap-6 overflow-x-auto scroll-smooth pb-6 snap-x snap-mandatory lg:snap-none lg:overflow-hidden"
+              className="flex gap-4 sm:gap-6 2xl:gap-10 overflow-x-auto scroll-smooth pb-6 snap-x snap-mandatory lg:snap-none lg:overflow-hidden"
               style={{ 
                 scrollbarWidth: 'none',
                 WebkitOverflowScrolling: 'touch',
@@ -435,7 +424,7 @@ export default function SneakerShowcase() {
         )}
       </AnimatePresence>
 
-      <style jsx>{`
+      <style dangerouslySetInnerHTML={{__html: `
         .custom-scrollbar::-webkit-scrollbar {
           width: 8px;
         }
@@ -468,7 +457,7 @@ export default function SneakerShowcase() {
         .animate-bounce-horizontal-reverse {
           animation: bounce-horizontal-reverse 1.5s infinite;
         }
-      `}</style>
+      `}} />
     </section>
   )
 }

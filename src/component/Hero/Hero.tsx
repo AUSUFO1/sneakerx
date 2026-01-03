@@ -125,7 +125,6 @@ const HeroImage = memo(() => {
       {/* Animated gradient background */}
       <div className="absolute inset-0 bg-linear-to-br from-red-500/20 via-transparent to-orange-500/20 blur-3xl animate-pulse" />
       
-      {/* Floating sneaker image */}
       <motion.div
         animate={
           shouldReduceMotion
@@ -140,7 +139,7 @@ const HeroImage = memo(() => {
           repeat: Infinity,
           ease: 'easeInOut',
         }}
-        className="relative z-10 w-full max-w-xl lg:max-w-2xl px-6 sm:px-8"
+        className="relative z-10 w-full max-w-md md:max-w-4xl lg:max-w-2xl px-6 sm:px-8"
       >
         {/* Loading skeleton */}
         {!imageLoaded && (
@@ -176,7 +175,7 @@ HeroImage.displayName = 'HeroImage'
 
 export default function Hero() {
   return (
-    <section className="relative w-full min-h-svh overflow-hidden bg-black">
+    <section className="relative w-full min-h-svh md:min-h-[60vh] lg:min-h-svh overflow-hidden bg-black">
       {/* Background gradient */}
       <div className="absolute inset-0 bg-linear-to-b from-red-500/10 via-transparent to-black pointer-events-none" />
 
@@ -194,16 +193,13 @@ export default function Hero() {
         />
       </div>
 
-      {/* Content Container - Optimized for all screens */}
       <div className="relative z-20 h-full min-h-svh flex flex-col lg:flex-row">
         
-        {/* LEFT: Text Content */}
         <div className="w-full lg:w-1/2 flex items-center justify-center px-6 sm:px-8 md:px-12 lg:px-16 xl:px-20 py-16 sm:py-20 md:py-24 lg:py-0">
           <HeroContent />
         </div>
 
-        {/* RIGHT: Hero Image */}
-        <div className="w-full lg:w-1/2 flex items-center justify-center py-8 sm:py-12 md:py-16 lg:py-0 min-h-[40vh] sm:min-h-[50vh] md:min-h-[60vh] lg:min-h-0">
+        <div className="w-full lg:w-1/2 flex items-center justify-center py-8 sm:py-12 lg:py-0 min-h-[40vh] sm:min-h-[50vh] lg:min-h-0">
           <HeroImage />
         </div>
       </div>
