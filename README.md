@@ -10,7 +10,6 @@ This project focuses on smooth UI interactions, responsive layouts, and a clean 
 
 * **Next.js App Router**
 * **Fully responsive** (mobile & desktop optimized)
-* Clean UI with smooth scrolling and animations
 * Component-based architecture
 * Optimized images using `next/image`
 * Automatic font optimization with `next/font`
@@ -24,9 +23,6 @@ This project focuses on smooth UI interactions, responsive layouts, and a clean 
 - **TypeScript** – Type-safe JavaScript for better reliability and maintainability
 - **Tailwind CSS** – Utility-first CSS framework for rapid and responsive styling
 - **Framer Motion** – Smooth, interactive UI animations and transitions
-- **Three.js** – Real-time 3D rendering used for the interactive shoe model in the Hero section
-- **@react-three/fiber & @react-three/drei** – React bindings and helpers for managing Three.js scenes
-
 ---
 
 ## Getting Started
